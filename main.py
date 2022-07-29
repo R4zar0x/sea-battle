@@ -33,10 +33,10 @@ def pressed_keys():
 grids = [Grid(1, 20, 20, pygame.Color("red")), Grid(2, 380, 20, pygame.Color("blue"))]
 
 for grid in grids:
-    grid.add_ship(1, (1, 1), 0)
-    grid.add_ship(3, (1, 4), 0)
-    grid.add_ship(2, (1, 8), 0)
-    grid.add_ship(2, (5, 1), 0)
+    grid.add_ship(1, 1, 1, 0)
+    grid.add_ship(3, 1, 4, 0)
+    grid.add_ship(2, 1, 8, 0)
+    grid.add_ship(2, 5, 1, 0)
 
     field = grid.get_field()
     count = 0
