@@ -28,17 +28,17 @@ class Grid:
 
     def draw_grid(self, surface, font):
 
-        for horizontal in range(11):
-            for vertical in range(11):
-                new_x = self.position_y + horizontal * self.grid_scale
-                new_y = self.position_x + vertical * self.grid_scale
+        for horizontal in range(10):
+            for vertical in range(10):
+                new_x = self.position_x + horizontal * self.grid_scale
+                new_y = self.position_y + vertical * self.grid_scale
 
-                color = self.grid_color if self.field[horizontal][vertical] else self.player_color
+                color = self.grid_color if not self.field[horizontal][vertical] else self.player_color
 
-                pygame.draw.rect(surface, self.grid_color, (new_x, new_y, self.grid_scale, self.grid_scale), 1)
+                pygame.draw.rect(surface, color, (new_x, new_y, self.grid_scale, self.grid_scale), 1)
 
     def add_ship(self, ship_id, position, direction):
-
+        
     
 
         pass
