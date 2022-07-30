@@ -19,10 +19,9 @@ def events():
 
 
 def draw_symbols(w, h):
-    w, h = cfg.start_width, cfg.start_height
     for symbol in cfg.symbols:
         text = font.render(symbol, True, pygame.Color("black"))
-        screen.blit(text, (w + 5, h - cfg.photo_size[0] + 4))
+        screen.blit(text, (w, h - cfg.photo_size[0]))
         w += cfg.photo_size[0]
     # cfg.start_height = h + cfg.photo_size[0]
 
@@ -52,7 +51,7 @@ def main():
         events()
 
 
-        draw_symbols()
+        draw_symbols(w, h)
         draw_grid(grid_1, w, h)
 
         clock.tick(fps)
