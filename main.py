@@ -5,7 +5,8 @@ from pprint import pprint
 from win32api import GetSystemMetrics
 
 from handler import Ship, Grid
-from config import screen, fps, clock
+import config as cfg
+from config import screen, fps, clock, font
 
 run_game = True
 
@@ -17,12 +18,29 @@ def events():
             run_game = False
 
 
-def drow_grid():
-    pygame.draw.rect(screen, pygame.Color("black"), (50, 60, 100, 10), 1)
+def draw_symbols(w, h):
+    w, h = cfg.start_width, cfg.start_height
+    for symbol in cfg.symbols:
+        text = font.render(symbol, True, pygame.Color("black"))
+        screen.blit(text, (w + 5, h - cfg.photo_size[0] + 4))
+        w += cfg.photo_size[0]
+    # cfg.start_height = h + cfg.photo_size[0]
+
+
+def draw_grid(grid, w, h):
+    for line in grid.get_field():
+        for element in line:
+            screen.blit(cfg.space, (w, h))
+            w += cfg.photo_size[0]
+        w = cfg.start_width
+        h += cfg.photo_size[1]
+    pygame.draw.rect(screen, pygame.Color("gray"), (cfg.start_width, cfg.start_height, cfg.photo_size[0] * 10, cfg.photo_size[1] * 10), 1)
 
 
 def main():
     pygame.init()
+    # cfg.start_height += 100
+    w, h = cfg.start_width, cfg.start_height
     player_1, player_2 = 0, 1
     grid_1 = Grid(player_1, player_2)
     grid_2 = Grid(player_2, player_1)
@@ -33,7 +51,9 @@ def main():
     while run_game:
         events()
 
-        drow_grid()
+
+        draw_symbols()
+        draw_grid(grid_1, w, h)
 
         clock.tick(fps)
         pygame.display.flip()
