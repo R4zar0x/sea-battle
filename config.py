@@ -16,6 +16,7 @@ damaged = pygame.transform.scale(pygame.image.load("Подбит.png"), (photo_s
 killed = pygame.transform.scale(pygame.image.load("Убит.png"), (photo_size[0], photo_size[1]))
 
 symbols = ("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")
-start_width, start_height = 10, 30
+start_width, start_height = 10, 10
+antialias = False
 
 grids = []
