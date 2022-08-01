@@ -99,7 +99,7 @@ def draw_constructor():
         try:
             mouse_position = pygame.mouse.get_pos()
             x, y = mouse_position[0], mouse_position[1] - cfg.photo_size[0] / 2
-            x -= (int(cfg.cursor) * cfg.photo_size[0]) / 2
+            x -= cfg.photo_size[0] / 2
             for cell in range(cfg.cursor):
                 screen.blit(cfg.ship, (x, y))
                 x += cfg.photo_size[0]
@@ -109,18 +109,23 @@ def draw_constructor():
 
 
 def click_on_constructor():
-    x, y = cfg.constructor_position[0], cfg.constructor_position[1]
+    start_x, start_y = x, y = cfg.constructor_position[0], cfg.constructor_position[1]
     mouse_position = pygame.mouse.get_pos()
     for type_of_ship in cfg.types_of_ships:
         y_ship = y + (type_of_ship - 1) * (cfg.photo_size[0] + 10)
         if x <= mouse_position[0] < x + type_of_ship * cfg.photo_size[0] and \
                 y_ship <= mouse_position[1] < y_ship + cfg.photo_size[0]:
+            pygame.mouse.set_cursor(*pygame.cursors.broken_x)
+            # pygame.mouse.set_cursor((8, 16), (0, 0), cfg.cursor_drag)
             return type_of_ship
     y = cfg.constructor_position[1] + 4 * (cfg.photo_size[0] + 10)
     x = cfg.constructor_position[0]
-    if x <= mouse_position[0] < x + cfg.photo_size[0] and \
-            y <= mouse_position[1] < y + cfg.photo_size[1]:
-        return 0
+    for type_of_ship in range(4):
+        y_ship = start_y + (type_of_ship - 1) * (cfg.photo_size[0] + 10)
+        if start_x > mouse_position[0] or mouse_position[0] > start_x + type_of_ship * cfg.photo_size[0] and \
+                y_ship > mouse_position[1] or mouse_position[0] > y_ship + cfg.photo_size[0]:
+            pygame.mouse.set_cursor(cfg.cursor_normal)
+            return 0
 
 
 def main():

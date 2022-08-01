@@ -8,6 +8,8 @@ constructor_position = (300, 50)
 clock = pygame.time.Clock()
 fps = 30
 font = pygame.font.Font(None, photo_size[0])
+cursor_normal = pygame.mouse.get_cursor()
+cursor_drag = pygame.image.load("cursor.png")
 
 space = pygame.transform.scale(pygame.image.load("Пустое место.png"), (photo_size[0], photo_size[1]))
 miss = pygame.transform.scale(pygame.image.load("Мимо.png"), (photo_size[0], photo_size[1]))
