@@ -1,4 +1,8 @@
 from os import environ
+from xml.dom.minidom import Element
+from flask import g
+from numpy import gradient
+from pandas import array
 
 environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 import pygame
@@ -12,13 +16,37 @@ from config import screen, fps, clock, font
 run_game = True
 
 
-def events():
+def events(grid):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             global run_game
             run_game = False
         if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
-            cfg.cursor = click_on_constructor()
+            
+            if cfg.cursor == 0:
+                cfg.cursor = click_on_constructor()
+            else:
+                cfg.cursor = is_clicked_on_grid(grid)
+                
+
+def is_clicked_on_grid(grid):
+    if cursor_collider(grid):
+        pygame.mouse.set_cursor(cfg.cursor_normal)
+        mouse_position = pygame.mouse.get_pos() 
+        position = [mouse_position[0], mouse_position[1]]
+        grid_start = grid.get_grid_start_position()
+        position[0] -= grid_start[0]
+        position[1] -= grid_start[1]
+        
+        element = int((position[0] - position[0] % cfg.photo_size[0]) / cfg.photo_size[0])
+        line = int((position[1] - position[1] % cfg.photo_size[0]) / cfg.photo_size[0])
+  
+        array_of_cells = []
+        for x in range(cfg.cursor):
+            array_of_cells.append([line, element + x])
+        grid.set_ship(array_of_cells)
+        return 0
+
 
 
 def draw_symbols(w, h):
@@ -137,7 +165,7 @@ def main():
 
     global run_game
     while run_game:
-        events()
+        events(grid_1)
 
         screen.fill(pygame.Color("white"))
 
