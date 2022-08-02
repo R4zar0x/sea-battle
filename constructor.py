@@ -4,6 +4,7 @@ import config as cfg
 from config import screen
 from handler import Grid
 
+
 def draw_constructor():
     x, y = cfg.constructor_position[0], cfg.constructor_position[1]
     for type_of_ship in cfg.types_of_ships:
@@ -60,23 +61,24 @@ def click_out_of_constructor():
 
 
 def add_ship(grid):
-
     cell_position = grid.get_cell_under_cursor()
     line = cell_position[0]
     element = cell_position[1]
 
     array_of_cells = []
     if cfg.rotate:
-        if line + cfg.cursor < 10:
+        print(line)
+        if line + cfg.cursor <= 10:
             for cell in range(cfg.cursor):
                 array_of_cells.append([line + cell, element])
         else:
             return
     else:
-        if element + cfg.cursor < 10:
+        if element + cfg.cursor <= 10:
             for cell in range(cfg.cursor):
                 array_of_cells.append([line, element + cell])
         else:
             return
+    pygame.mouse.set_cursor(*cfg.cursor_normal)
+    cfg.cursor = 0
     grid.set_ship(array_of_cells)
-
