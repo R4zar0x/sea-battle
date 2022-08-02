@@ -21,6 +21,7 @@ symbols = ("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")
 start_width, start_height = 10, 10
 antialias = False
 cursor = 0
+rotate = False
 types_of_ships = [1, 2, 3, 4]
 
 grids = []
