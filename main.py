@@ -15,13 +15,16 @@ pygame.init()
 run_game = True
 
 
-def events():
+def events(grid):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             global run_game
             run_game = False
         elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
-            constructor.is_clicked_on_constructor()
+            if grid.cursor_in_grid() and cfg.cursor > 0:
+                constructor.add_ship(grid)
+            else:
+                constructor.click_on_constructor()
 
 
 def main():
@@ -30,7 +33,7 @@ def main():
 
     global run_game
     while run_game:
-        events()
+        events(grid_1)
 
         screen.fill(pygame.Color("white"))
 

@@ -77,6 +77,18 @@ class Grid:
     def set_field(self, field):
         self.field = field
 
+    def get_cell_under_cursor(self):
+        mouse = pygame.mouse.get_pos()
+        mouse_position = [mouse[0], mouse[1]]
+        grid_start_position = self.grid_position_start
+
+        x = mouse_position[0] - grid_start_position[0]
+        y = mouse_position[1] - grid_start_position[1]
+
+        element = int((x - x % self.cell_size) / self.cell_size)
+        line = int((y - y % self.cell_size) / self.cell_size)
+        return [line, element]
+
     def get_position_end(self):
         return self.position_end
 
