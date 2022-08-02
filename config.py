@@ -1,5 +1,7 @@
 import pygame
 
+pygame.init()
+
 screen_width, screen_height = 500, 600  # 924, 693; 1366, 768; 1920, 1080; GetSystemMetrics(0), GetSystemMetrics(1)
 screen = pygame.display.set_mode((screen_width, screen_height))  # pygame.FULLSCREEN
 
@@ -21,6 +23,7 @@ symbols = ("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")
 start_width, start_height = 10, 10
 antialias = False
 cursor = 0
+lbm_state = False
 rotate = False
 types_of_ships = [1, 2, 3, 4]
 
