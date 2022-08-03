@@ -1,11 +1,11 @@
 from os import environ
-
 environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 import pygame
 from pprint import pprint
 from win32api import GetSystemMetrics
 
-from handler import Ship, Grid
+from button import Button
+from handler import Grid
 import config as cfg
 from config import screen, fps, clock, font
 import constructor
@@ -30,6 +30,8 @@ def events(grid):
 def main():
     player_1, player_2 = 0, 1
     grid_1 = Grid(player_1, player_2, 10, 10)
+    button = Button(300, 200, 100, 50)
+    button.set_text("Start Game")
 
     global run_game
     while run_game:
@@ -39,7 +41,9 @@ def main():
 
         grid_1.draw_grid(screen)
 
-        constructor.draw_constructor()
+        constructor.draw_constructor(grid_1)
+
+        button.draw_button(screen)
 
         clock.tick(fps)
         pygame.display.flip()

@@ -14,6 +14,8 @@ class Grid:
         self.grid_position_start = [x_set + cell_size, y_set + cell_size]
         self.position_end = [x_set + 11 * cell_size, y_set + 11 * cell_size]
 
+        self.possible_count_of_ships = [4, 3, 2, 1]
+
         # alive, killed - modifications
         self.ships = []     # [[modification, cell_id, cell_id], [modification, cell_id]]
         self.field = []
@@ -66,16 +68,43 @@ class Grid:
             return True
         return False
 
+    def is_free_space_for_ship(self, rotate, ship_position_line, ship_position_element):
+        field = self.get_field()
+        if rotate:
+            for line in range(cfg.cursor + 2):
+                for element in range(3):
+                    cell_line = ship_position_line - 1 + line
+                    cell_element = ship_position_element - 1 + element
+                    if 0 <= cell_line < 10 and 0 <= cell_element < 10:
+                        cell = field[cell_line][cell_element]
+                        if cell["modification"] == "ship":
+                            return False
+        else:
+            for line in range(3):
+                for element in range(cfg.cursor + 2):
+                    cell_line = ship_position_line - 1 + line
+                    cell_element = ship_position_element - 1 + element
+                    if 0 <= cell_line < 10 and 0 <= cell_element < 10:
+                        cell = field[cell_line][cell_element]
+                        if cell["modification"] == "ship":
+                            return False
+        return True
+
+    def is_count_of_ships_null(self):
+        for count in self.possible_count_of_ships:
+            if count != 0:
+                return False
+        return True
+
     def set_ship(self, cell_list):       # [[row, td]]
+        self.possible_count_of_ships[len(cell_list) - 1] -= 1
+
         self.ships.append(['alive'])
         for cell in cell_list:
             cell_id = cell[0] * 10 + cell[1]
             self.ships[len(self.ships) - 1].append(cell_id)
             self.field[cell[0]][cell[1]]["modification"] = "ship"
             self.field[cell[0]][cell[1]]["ship_id"] = len(self.ships) - 1
-
-    def set_field(self, field):
-        self.field = field
 
     def get_cell_under_cursor(self):
         mouse = pygame.mouse.get_pos()
@@ -94,6 +123,9 @@ class Grid:
 
     def get_position_start(self):
         return self.position_start
+
+    def get_possible_count_of_ships(self):
+        return self.possible_count_of_ships
 
     def get_field(self):
         return self.field
