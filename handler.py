@@ -4,15 +4,15 @@ import config as cfg
 
 class Grid:
 
-    def __init__(self, player, opponent, x_set, y_set, cell_size=20):
+    def __init__(self, player, opponent, cell_size=20):
 
         self.cell_size = cell_size
         self.player = player
         self.opponent = opponent
 
-        self.position_start = [x_set, y_set]
-        self.grid_position_start = [x_set + cell_size, y_set + cell_size]
-        self.position_end = [x_set + 11 * cell_size, y_set + 11 * cell_size]
+        self.position_start = []
+        self.grid_position_start = []
+        self.position_end = []
 
         self.possible_count_of_ships = [4, 3, 2, 1]
 
@@ -28,7 +28,11 @@ class Grid:
                                          "vision": False,
                                          "ship_id": 0})
 
-    def draw_grid(self, screen):
+    def draw_grid(self, screen, x_set, y_set):
+        self.position_start = [x_set, y_set]
+        self.grid_position_start = [x_set + self.cell_size, y_set + self.cell_size]
+        self.position_end = [x_set + 11 * self.cell_size, y_set + 11 * self.cell_size]
+
         width, height = self.grid_position_start[0], self.grid_position_start[1]
         for line in self.field:
             for element in line:
@@ -96,6 +100,11 @@ class Grid:
                 return False
         return True
 
+    def set_positions(self, x_set, y_set):
+        self.position_start = [x_set, y_set]
+        self.grid_position_start = [x_set + self.cell_size, y_set + self.cell_size]
+        self.position_end = [x_set + 11 * self.cell_size, y_set + 11 * self.cell_size]
+
     def set_ship(self, cell_list):       # [[row, td]]
         self.possible_count_of_ships[len(cell_list) - 1] -= 1
 
@@ -129,6 +138,9 @@ class Grid:
 
     def get_field(self):
         return self.field
+
+    def get_player(self):
+        return self.player
 
 
 class Ship:

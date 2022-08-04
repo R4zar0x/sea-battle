@@ -5,8 +5,9 @@ from config import screen
 from handler import Grid
 
 
-def draw_constructor(grid):
-    x, y = cfg.constructor_position[0], cfg.constructor_position[1]
+def draw_constructor(grid, x, y):
+    # x, y = cfg.constructor_position[0], cfg.constructor_position[1]
+
     for type_of_ship in cfg.types_of_ships:
         count_of_ships = grid.get_possible_count_of_ships()
         # 150, 10, 10 red; 10, 150, 10 green
@@ -31,12 +32,12 @@ def draw_constructor(grid):
                 x += cfg.photo_size[0]
 
 
-def click_on_constructor(grid):
-    if click_out_of_constructor() and cfg.cursor > 0:
+def click_on_constructor(grid, x, y):
+    if click_out_of_constructor(x, y) and cfg.cursor > 0:
         pygame.mouse.set_cursor(*cfg.cursor_normal)
         cfg.cursor = 0
     else:
-        x, y = cfg.constructor_position[0], cfg.constructor_position[1]
+        # x, y = cfg.constructor_position[0], cfg.constructor_position[1]
         mouse_position = pygame.mouse.get_pos()
 
         for type_of_ship in cfg.types_of_ships:
@@ -59,8 +60,8 @@ def click_on_constructor(grid):
                     return
 
 
-def click_out_of_constructor():
-    x, y = cfg.constructor_position[0], cfg.constructor_position[1]
+def click_out_of_constructor(x, y):
+    # x, y = cfg.constructor_position[0], cfg.constructor_position[1]
     mouse_position = pygame.mouse.get_pos()
 
     for type_of_ship in cfg.types_of_ships:
