@@ -31,7 +31,7 @@ def draw_constructor(grid):
                 x += cfg.photo_size[0]
 
 
-def click_on_constructor():
+def click_on_constructor(grid):
     if click_out_of_constructor() and cfg.cursor > 0:
         pygame.mouse.set_cursor(*cfg.cursor_normal)
         cfg.cursor = 0
@@ -40,15 +40,23 @@ def click_on_constructor():
         mouse_position = pygame.mouse.get_pos()
 
         for type_of_ship in cfg.types_of_ships:
+
             y_ship = y + (type_of_ship - 1) * (cfg.photo_size[0] + 10)
+
             if x <= mouse_position[0] < x + type_of_ship * cfg.photo_size[0] and \
                     y_ship <= mouse_position[1] < y_ship + cfg.photo_size[0]:
-                pygame.mouse.set_cursor(*pygame.cursors.broken_x)
-                if cfg.cursor == type_of_ship:
-                    cfg.rotate = not cfg.rotate
+
+                if grid.get_possible_count_of_ships()[type_of_ship - 1]:
+
+                    pygame.mouse.set_cursor(*pygame.cursors.broken_x)
+
+                    if cfg.cursor == type_of_ship:
+                        cfg.rotate = not cfg.rotate
+                    else:
+                        cfg.rotate = False
+                        cfg.cursor = type_of_ship
                 else:
-                    cfg.rotate = False
-                    cfg.cursor = type_of_ship
+                    return
 
 
 def click_out_of_constructor():

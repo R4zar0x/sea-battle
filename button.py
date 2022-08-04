@@ -18,10 +18,7 @@ class Button:
         self.text_color = pygame.Color(40, 10, 80)
 
     def button_click(self):
-        if self.is_mouse_on_button():
-            self.function(self.arguments)
-        else:
-            return
+        self.function(self.arguments)
 
     def draw_button(self, surface):
         pygame.draw.rect(surface, self.button_color,
@@ -32,9 +29,8 @@ class Button:
 
     def is_mouse_on_button(self):
         mouse_position = pygame.mouse.get_pos()
-
-        if self.button_position[0] < mouse_position[0] < self.button_size[0] + self.button_size[0] and \
-                self.button_position[1] < mouse_position[1] < self.button_size[1] + self.button_size[1]:
+        if self.button_position[0] < mouse_position[0] < self.button_position[0] + self.button_size[0] and \
+                self.button_position[1] < mouse_position[1] < self.button_position[1] + self.button_size[1]:
             return True
         else:
             return False
@@ -50,6 +46,6 @@ class Button:
     def set_text_color(self, color):
         self.text_color = color
 
-    def set_function(self, function, *args):
+    def set_function(self, function, argument):
         self.function = function
-        self.arguments = args
+        self.arguments = argument
