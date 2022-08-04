@@ -12,8 +12,6 @@ import game
 
 pygame.init()
 
-# TODO: fix bug with "Start game" button (now you can start game with ships count, that less, that max)
-
 def main():
     player_1, player_2 = 0, 1
     grid = Grid(player_1, player_2, 10, 10)
