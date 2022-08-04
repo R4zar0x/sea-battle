@@ -20,6 +20,11 @@ def events(grid, button):
 
 
 def button_start_game(grid):
-    grid.get_field()
-    cfg.menu = False
-    cfg.game = True
+    sum = 0
+    for max_ships in grid.get_possible_count_of_ships():
+        sum += max_ships
+    if sum == 0:
+        grid.get_field()
+        cfg.menu = False
+        cfg.game = True
+    return 
