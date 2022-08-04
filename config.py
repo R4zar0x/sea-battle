@@ -11,22 +11,21 @@ clock = pygame.time.Clock()
 fps = 30
 font = pygame.font.Font(None, photo_size[0])
 cursor_normal = pygame.mouse.get_cursor()
-cursor_drag = pygame.image.load("cursor.png")
+# cursor_drag = pygame.image.load("cursor.png")
 
-space = pygame.transform.scale(pygame.image.load("Пустое место.png"), (photo_size[0], photo_size[1]))
-miss = pygame.transform.scale(pygame.image.load("Мимо.png"), (photo_size[0], photo_size[1]))
-ship = pygame.transform.scale(pygame.image.load("Корабль.png"), (photo_size[0], photo_size[1]))
-damaged = pygame.transform.scale(pygame.image.load("Подбит.png"), (photo_size[0], photo_size[1]))
-killed = pygame.transform.scale(pygame.image.load("Убит.png"), (photo_size[0], photo_size[1]))
+space = pygame.transform.scale(pygame.image.load("ships\space.png"), (photo_size[0], photo_size[1]))
+miss = pygame.transform.scale(pygame.image.load("ships\miss.png"), (photo_size[0], photo_size[1]))
+ship = pygame.transform.scale(pygame.image.load("ships\ship.png"), (photo_size[0], photo_size[1]))
+damaged = pygame.transform.scale(pygame.image.load("ships\damaged.png"), (photo_size[0], photo_size[1]))
+killed = pygame.transform.scale(pygame.image.load("ships\killed.png"), (photo_size[0], photo_size[1]))
 
 symbols = ("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")
 start_width, start_height = 10, 10
 antialias = False
 cursor = 0
-lbm_state = False
+menu = True
+game = False
 rotate = False
 types_of_ships = [1, 2, 3, 4]
 
 grids = []
-
-
