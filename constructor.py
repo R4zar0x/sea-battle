@@ -2,7 +2,7 @@ import pygame
 
 import config as cfg
 from config import screen
-from handler import Grid
+from local_grid import Grid
 
 
 def draw_constructor(grid, x, y):

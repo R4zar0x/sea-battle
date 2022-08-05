@@ -4,7 +4,7 @@ import config as cfg
 import constructor
 
 
-def events(grid, button, x, y):
+def events(grid, button=0, x=0, y=0):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             if cfg.menu:
