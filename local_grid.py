@@ -38,7 +38,7 @@ class Grid:
         for line in self.field:
             for element in line:
                 if player != self.player and player == self.opponent:
-                    if element["vision"] == False:
+                    if not element["vision"]:
                         screen.blit(cfg.space, (width, height))
                     else:
                         if element["modification"] == "clear":
@@ -130,6 +130,38 @@ class Grid:
             self.field[cell[0]][cell[1]]["modification"] = "ship"
             self.field[cell[0]][cell[1]]["ship_id"] = len(self.ships) - 1
 
+    def set_miss_modification_around_of_killed_ship(self, ship_id):
+        ship = self.ships[ship_id]
+        # print(ship)
+        # pprint(self.ships)
+        field = self.field
+        for i in range(len(ship) - 1):
+            cells_around_that_cell = []  # [line, element]
+            cell_id = ship[i + 1]
+            line = int(cell_id / 10)
+            element = int(cell_id % 10)
+            if element > 0:
+                cells_around_that_cell.append([line, element - 1])
+            if line > 0 and element > 0:
+                cells_around_that_cell.append([line - 1, element - 1])
+            if line < 9 and element > 0:
+                cells_around_that_cell.append([line + 1, element - 1])
+            if line < 9:
+                cells_around_that_cell.append([line + 1, element])
+            if line > 0:
+                cells_around_that_cell.append([line - 1, element])
+            if line > 0 and element < 9:
+                cells_around_that_cell.append([line - 1, element + 1])
+            if element < 9:
+                cells_around_that_cell.append([line, element + 1])
+            if line < 9 and element < 9:
+                cells_around_that_cell.append([line + 1, element + 1])
+            for cell_near in cells_around_that_cell:
+                line, element = cell_near[0], cell_near[1]
+                if field[line][element]["modification"] == "clear":
+                    self.field[line][element]["modification"] = "miss"
+                    self.field[line][element]["vision"] = True
+
     def get_cell_under_cursor(self):
         mouse = pygame.mouse.get_pos()
         mouse_position = [mouse[0], mouse[1]]
@@ -169,39 +201,6 @@ class Grid:
 
     def damage_ship(self, line, element):
         self.get_field()[line][element]["modification"] = "damaged"
-
-    def set_miss_modification_around_of_killed_ship(self, ship_id):
-        ship = self.ships[ship_id]
-        # print(ship)
-        # pprint(self.ships)
-        field = self.field
-        for i in range(len(ship) - 1):
-            cells_around_that_cell = [] # [line, element]
-            cell_id = ship[i + 1]
-            line = int(cell_id / 10)
-            element = int(cell_id % 10)
-            if element > 0:
-                cells_around_that_cell.append([line, element - 1])
-            if line > 0 and element > 0:
-                cells_around_that_cell.append([line - 1, element - 1])
-            if line < 9 and element > 0:
-                cells_around_that_cell.append([line + 1, element - 1])
-            if line < 9:
-                cells_around_that_cell.append([line + 1, element])
-            if line > 0:
-                cells_around_that_cell.append([line - 1, element])
-            if line > 0 and element < 9:
-                cells_around_that_cell.append([line - 1, element + 1])
-            if element < 9:
-                cells_around_that_cell.append([line, element + 1])
-            if line < 9 and element < 9:
-                cells_around_that_cell.append([line + 1, element + 1])
-            for cell_near in cells_around_that_cell:
-                line, element = cell_near[0], cell_near[1]
-                if field[line][element]["modification"] == "clear":
-                    self.field[line][element]["modification"] = "miss"
-                    self.field[line][element]["vision"] = True
-                    
 
     def kill_ship(self, ship_id):
         ship = self.ships[ship_id]
@@ -244,6 +243,7 @@ class Grid:
             return True
         else:
             return False
+
 
 class Ship:
 

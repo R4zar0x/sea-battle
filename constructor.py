@@ -2,7 +2,6 @@ import pygame
 
 import config as cfg
 from config import screen
-from local_grid import Grid
 
 
 def draw_constructor(grid, x, y):
@@ -96,3 +95,18 @@ def add_ship(grid):
         grid.set_ship(array_of_cells)
     else:
         return
+
+
+def demo_ships(grid): # для теста, потом удалить
+
+    for ship in cfg.demo_ships:
+        array = []
+        for number in ship:
+            if number != "alive":
+
+                id = number
+                line = int(id / 10)
+                element = id % 10
+                array.append([line, element])
+
+        grid.set_ship(array)

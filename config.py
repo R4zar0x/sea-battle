@@ -19,13 +19,32 @@ ship = pygame.transform.scale(pygame.image.load("ships\ship.png"), (photo_size[0
 damaged = pygame.transform.scale(pygame.image.load("ships\damaged.png"), (photo_size[0], photo_size[1]))
 killed = pygame.transform.scale(pygame.image.load("ships\killed.png"), (photo_size[0], photo_size[1]))
 
-symbols = ("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")
-start_width, start_height = 10, 10
-antialias = False
-cursor = 0
 menu = True
 game = False
+run = True
+
+symbols = ("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")
+start_width, start_height = 10, 10
+
+antialias = False
+cursor = 0
 rotate = False
+
 types_of_ships = [1, 2, 3, 4]
 
 grids = []
+
+demo_ships = \
+    [
+        ['alive', 0, 1, 2, 3],
+        ['alive', 5, 6, 7],
+        ['alive', 9],
+        ['alive', 20, 21, 22],
+        ['alive', 24, 25],
+        ['alive', 27, 28],
+        ['alive', 48, 49],
+        ['alive', 46],
+        ['alive', 44],
+        ['alive', 42]
+    ]
+

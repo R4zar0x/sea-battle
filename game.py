@@ -9,6 +9,7 @@ def events(grids):
         if event.type == pygame.QUIT:
             if cfg.game:
                 cfg.game = False
+                cfg.run = False
         elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
             for grid in grids:
                 if grid.cursor_in_grid():
