@@ -18,7 +18,10 @@ class Button:
         self.text_color = pygame.Color(40, 10, 80)
 
     def button_click(self):
-        self.function(self.arguments)
+        if self.arguments is None:
+            self.function()
+        else:
+            self.function(self.arguments)
 
     def draw_button(self, surface):
         pygame.draw.rect(surface, self.button_color,

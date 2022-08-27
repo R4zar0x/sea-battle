@@ -10,7 +10,7 @@ def draw_constructor(grid, x, y):
     for type_of_ship in cfg.types_of_ships:
         count_of_ships = grid.get_possible_count_of_ships()
         # 150, 10, 10 red; 10, 150, 10 green
-        color = pygame.Color(10, 150, 10) if count_of_ships[type_of_ship - 1] > 0 else pygame.Color(150, 10, 10)
+        color = pygame.Color(10, 255, 10) if count_of_ships[type_of_ship - 1] > 0 else pygame.Color(255, 10, 10)
         text_count_of_ships = cfg.font.render(f"{count_of_ships[type_of_ship - 1]} x",
                                               cfg.antialias, color)
         screen.blit(text_count_of_ships, (x - cfg.photo_size[0] * 1.2, y + cfg.photo_size[0] / 5))
@@ -97,7 +97,7 @@ def add_ship(grid):
         return
 
 
-def demo_ships(grid): # для теста, потом удалить
+def demo_ships(grid):   # для теста, потом удалить
 
     for ship in cfg.demo_ships:
         array = []

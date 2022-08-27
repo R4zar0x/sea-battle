@@ -10,18 +10,27 @@ constructor_position = (300, 50)
 clock = pygame.time.Clock()
 fps = 30
 font = pygame.font.Font(None, photo_size[0])
+end_font = pygame.font.Font(None, 38)
 cursor_normal = pygame.mouse.get_cursor()
 # cursor_drag = pygame.image.load("cursor.png")
 
-space = pygame.transform.scale(pygame.image.load("ships\space.png"), (photo_size[0], photo_size[1]))
-miss = pygame.transform.scale(pygame.image.load("ships\miss.png"), (photo_size[0], photo_size[1]))
-ship = pygame.transform.scale(pygame.image.load("ships\ship.png"), (photo_size[0], photo_size[1]))
-damaged = pygame.transform.scale(pygame.image.load("ships\damaged.png"), (photo_size[0], photo_size[1]))
-killed = pygame.transform.scale(pygame.image.load("ships\killed.png"), (photo_size[0], photo_size[1]))
+space = pygame.transform.scale(pygame.image.load("ships/space.png"), (photo_size[0], photo_size[1]))
+miss = pygame.transform.scale(pygame.image.load("ships/miss.png"), (photo_size[0], photo_size[1]))
+ship = pygame.transform.scale(pygame.image.load("ships/ship.png"), (photo_size[0], photo_size[1]))
+damaged = pygame.transform.scale(pygame.image.load("ships/damaged.png"), (photo_size[0], photo_size[1]))
+killed = pygame.transform.scale(pygame.image.load("ships/killed.png"), (photo_size[0], photo_size[1]))
 
+background = pygame.transform.scale(pygame.image.load("background/background_photo.jpg"), (500, 600))
+
+run = True
 menu = True
 game = False
-run = True
+end = False
+
+winner = ""
+
+game_mods = ["creating_fields", "game", "f_pl_turn", "s_pl_turn"]
+game_mode = ""
 
 symbols = ("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")
 start_width, start_height = 10, 10
@@ -47,4 +56,3 @@ demo_ships = \
         ['alive', 44],
         ['alive', 42]
     ]
-

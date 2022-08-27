@@ -25,12 +25,11 @@ def events(grid, button=0, x=0, y=0):
                 constructor.demo_ships(grid)
 
 
-def button_start_game(grid):
+def button_next(grid):
     summ = 0
     for max_ships in grid.get_possible_count_of_ships():
         summ += max_ships
     if summ == 0:
-        grid.get_field()       # TODO:выяснить нахуя эта залупа
         cfg.menu = False
         cfg.game = True
     return
@@ -41,6 +40,6 @@ def button_color(grid):
     for max_ships in grid.get_possible_count_of_ships():
         summ += max_ships
     if summ == 0:
-        return 0, 150, 0
+        return 10, 255, 10
     else:
-        return 200, 0, 0
+        return 255, 10, 10
