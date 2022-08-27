@@ -23,7 +23,7 @@ def show_game_mode():
 
 def main():
     player_1, player_2 = 0, 1
-    grid_1 = Grid(player_1, player_2, "chlenvsemchlenam")
+    grid_1 = Grid(player_1, player_2, "Alex")
     grid_2 = Grid(player_2, player_1, "ultraildo")
     button = Button(300, 200, 100, 50)
     button.set_text("Next player")

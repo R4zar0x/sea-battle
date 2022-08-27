@@ -10,5 +10,6 @@ You will play it ONLINE!
 
 ![Img alt](https://github.com/R4zar0x/sea-battle/blob/main/screenshots/Screenshot%2010.png)
 
+![Img alt](https://github.com/R4zar0x/sea-battle/blob/main/screenshots/Screenshot%2011.png)
 # Wait, it will be ready soon!
 # Thank you, <3
