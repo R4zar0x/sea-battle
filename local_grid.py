@@ -10,7 +10,7 @@ class Grid:
         self.player = player
         self.opponent = opponent
         self.player_name = player_name
-        self.char_color = pygame.Color("green")
+        self.char_color = pygame.Color("gray")
 
         self.position_start = []
         self.grid_position_start = []
@@ -68,7 +68,8 @@ class Grid:
             width = self.grid_position_start[0]
             height += self.cell_size
         pygame.draw.rect(screen, pygame.Color("gray"),
-                         (self.grid_position_start[0], self.grid_position_start[1], self.cell_size * 10 + 1, self.cell_size * 10 + 1), 1)
+                         (self.grid_position_start[0], self.grid_position_start[1],
+                          self.cell_size * 10 + 1, self.cell_size * 10 + 1), 1)
 
         width, height = self.position_start[0], self.position_start[1] + self.cell_size / 10
         for symbol in cfg.symbols:
@@ -157,6 +158,9 @@ class Grid:
             self.ships[len(self.ships) - 1].append(cell_id)
             self.field[cell[0]][cell[1]]["modification"] = "ship"
             self.field[cell[0]][cell[1]]["ship_id"] = len(self.ships) - 1
+
+    def set_player_name(self, name):
+        self.player_name = name
 
     def set_miss_modification_around_of_killed_ship(self, ship_id):
         ship = self.ships[ship_id]

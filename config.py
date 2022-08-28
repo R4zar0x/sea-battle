@@ -10,6 +10,7 @@ constructor_position = (300, 50)
 clock = pygame.time.Clock()
 fps = 30
 font = pygame.font.Font(None, photo_size[0])
+set_name_font = pygame.font.Font(None, 20)
 end_font = pygame.font.Font(None, 38)
 cursor_normal = pygame.mouse.get_cursor()
 # cursor_drag = pygame.image.load("cursor.png")

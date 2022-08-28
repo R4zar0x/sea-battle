@@ -19,6 +19,6 @@ def button_end():
     cfg.run = False
 
 
-def draw_text(surface, position, text, text_color=pygame.Color("lightblue")):
+def draw_text(surface, x, y, text, text_color=pygame.Color("lightblue")):
     txt = cfg.end_font.render(text, True, text_color)
-    surface.blit(txt, position)
+    surface.blit(txt, (x - txt.get_width() / 2, y))
