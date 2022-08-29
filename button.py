@@ -50,6 +50,6 @@ class Button:
     def set_text_color(self, color):
         self.text_color = color
 
-    def set_function(self, function, argument):
+    def set_function(self, function, argument=None):
         self.function = function
         self.arguments = argument

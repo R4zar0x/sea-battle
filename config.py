@@ -25,11 +25,16 @@ killed = pygame.transform.scale(pygame.image.load("ships/killed.png"), (photo_si
 background = pygame.transform.scale(pygame.image.load("background/background_photo.jpg"), (500, 600))
 
 run = True
-menu = True
+
+load = False
+start_menu = False
+menu = False
 game = False
 end = False
 
 winner = ""
+
+time = 0
 
 game_mods = ["creating_fields", "game", "f_pl_turn", "s_pl_turn"]
 game_mode = ""
@@ -41,9 +46,15 @@ antialias = False
 cursor = 0
 rotate = False
 
+alpha = 0
+
 types_of_ships = [1, 2, 3, 4]
 
 grids = []
+
+draw_developers_before = True
+draw_developers_after = True
+draw_background = False
 
 demo_ships = \
     [
