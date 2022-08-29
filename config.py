@@ -4,6 +4,7 @@ pygame.init()
 
 screen_width, screen_height = 500, 600  # 924, 693; 1366, 768; 1920, 1080; GetSystemMetrics(0), GetSystemMetrics(1)
 screen = pygame.display.set_mode((screen_width, screen_height))  # pygame.FULLSCREEN
+pygame.display.set_caption('Sea Battle')
 
 photo_size = (20, 20)
 constructor_position = (300, 50)

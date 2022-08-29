@@ -90,6 +90,8 @@ def main():
             button.draw_button(screen)
             box.draw(screen)
 
+            menu.text_draw(screen, grid_2, 30, 240)
+
             clock.tick(fps)
             pygame.display.flip()
 
