@@ -30,7 +30,6 @@ def show_game_mode():
 
 def main():
     while cfg.run:
-
         """Loading"""
         cfg.load = True
         while cfg.load and cfg.run:
@@ -38,7 +37,7 @@ def main():
             loading_game.events()
             # draw functions
             screen.fill(pygame.Color("black"))
-            loading_game.draw_developers(screen)
+            loading_game.draw(screen)
 
             clock.tick(fps)
             pygame.display.flip()

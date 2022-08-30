@@ -52,9 +52,12 @@ types_of_ships = [1, 2, 3, 4]
 
 grids = []
 
-draw_developers_before = True
-draw_developers_after = True
-draw_background = False
+developers_damping = True
+developers_occurrence = True
+background_damping = False
+
+animations_frames = 256
+animations_time = 6
 
 demo_ships = \
     [
