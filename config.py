@@ -30,7 +30,7 @@ end = False
 
 winner = ""
 
-game_mods = ["creating_fields", "game", "f_pl_turn", "s_pl_turn"]
+game_mods = ["creating_fields", "game", "f_pl_turn", "s_pl_turn", "end_page"]
 game_mode = ""
 
 symbols = ("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")

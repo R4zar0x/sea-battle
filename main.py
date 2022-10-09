@@ -23,7 +23,9 @@ pygame.init()
 
 
 def show_game_mode():
-    print(cfg.game_mode)
+    text = f"Game mode: {cfg.game_mode}"
+    txt = cfg.font.render(text, True, pygame.Color('white'))
+    screen.blit(txt, (0, 0))
 
 
 def main():
@@ -52,6 +54,7 @@ def main():
             # draw functions
             # screen.fill(pygame.Color("white"))
             screen.blit(cfg.background, (0, 0))
+            show_game_mode()
 
             grid_1.draw_grid(screen, 10, 10, player=0)
 
@@ -83,6 +86,7 @@ def main():
             # draw functions
             # screen.fill(pygame.Color("white"))
             screen.blit(cfg.background, (0, 0))
+            show_game_mode()
 
             grid_2.draw_grid(screen, 10, 10, player=1)
 
@@ -90,7 +94,6 @@ def main():
             button.draw_button(screen)
             box.draw(screen)
 
-            clock.tick(fps)
             pygame.display.flip()
 
         grid_2.set_player_name(box.get_text())
@@ -100,6 +103,7 @@ def main():
         while cfg.game and cfg.run:
             # screen.fill(pygame.Color("white"))
             screen.blit(cfg.background, (0, 0))
+            show_game_mode()
 
             grid_1.draw_grid(screen, 10, 10, player=0)
             grid_2.draw_grid(screen, 10, 300, player=1)
@@ -125,12 +129,14 @@ def main():
 
         buttons = [button_exit, button_restart]
 
+        cfg.game_mode = cfg.game_mods[4]
         cfg.end = True
         while cfg.end and cfg.run:
             end.events(buttons)
 
             # screen.fill(pygame.Color("white"))
             screen.blit(cfg.background, (0, 0))
+            show_game_mode()
 
             end.draw_text(screen,
                           (cfg.screen_width / 2), 150,
