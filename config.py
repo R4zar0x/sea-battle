@@ -4,6 +4,7 @@ pygame.init()
 
 screen_width, screen_height = 500, 600  # 924, 693; 1366, 768; 1920, 1080; GetSystemMetrics(0), GetSystemMetrics(1)
 screen = pygame.display.set_mode((screen_width, screen_height))  # pygame.FULLSCREEN
+pygame.display.set_caption('Sea Battle')
 
 photo_size = (20, 20)
 constructor_position = (300, 50)
@@ -24,13 +25,16 @@ killed = pygame.transform.scale(pygame.image.load("ships/killed.png"), (photo_si
 background = pygame.transform.scale(pygame.image.load("background/background_photo.jpg"), (500, 600))
 
 run = True
-menu = True
+
+load = False
+start_menu = False
+menu = False
 game = False
 end = False
 
 winner = ""
 
-game_mods = ["creating_fields", "game", "f_pl_turn", "s_pl_turn", "end_page"]
+game_mods = ["creating_fields", "game", "f_pl_turn", "s_pl_turn", "end_page", "start_page"]
 game_mode = ""
 
 symbols = ("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")
@@ -40,9 +44,18 @@ antialias = False
 cursor = 0
 rotate = False
 
+alpha = 0
+
 types_of_ships = [1, 2, 3, 4]
 
 grids = []
+
+developers_damping = True
+developers_occurrence = True
+background_damping = False
+
+animations_frames = 256
+animations_time = 6
 
 demo_ships = \
     [
