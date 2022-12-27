@@ -17,12 +17,14 @@ import start_menu
 import menu
 import game
 import end
+import choose_room
 
 
 pygame.init()
 
 # при нажатии f поле авоматически заполняется сохраненным
-
+# TODO: попытаться засунуть show_game_mode() в events
+# TODO: поменять ручное вычисление вхождения в диапазон на функцию
 
 def show_game_mode():
     text = f"Game mode: {cfg.game_mode}"
@@ -34,7 +36,7 @@ def main():
     while cfg.run:
         """Loading"""
         cfg.game_mode = cfg.game_mods[5]
-        cfg.load = True
+        cfg.load = False
         while cfg.load and cfg.run:
             # events
             loading_game.events()
@@ -82,6 +84,65 @@ def main():
 
             clock.tick(fps)
             pygame.display.flip()
+        
+
+
+
+
+
+
+        cfg.choose_room = True
+        cfg.game_mode = cfg.game_mods[6]
+
+
+        find_room_button = Button(10, 20, 200, 50)
+        find_room_button.set_text("Find rooms")
+        find_room_button.set_button_color(pygame.Color("white"))
+        find_room_button.set_text_color(pygame.Color("white"))
+        find_room_button.set_function(print, "ok")
+
+        prev_page_button = Button(50, 410, 150, 40)
+        prev_page_button.set_text("Previos page")
+        prev_page_button.set_button_color(pygame.Color("black"))
+        prev_page_button.set_text_color(pygame.Color("black"))
+        prev_page_button.set_function(print, "previos page")
+
+        next_page_button = Button(300, 410, 150, 40)
+        next_page_button.set_text("Next page")
+        next_page_button.set_button_color(pygame.Color("black"))
+        next_page_button.set_text_color(pygame.Color("black"))
+        next_page_button.set_function(print, "next page")
+
+        rooms_list_pos = (20, 80, 460, 320)
+        room_high = 20
+        margin = 5
+        rooms = [{room_name: "room 1"}, {room_name: "room 2"}, {room_name: "room 3"}, {room_name: "room 4"}, {room_name: "room 5"}]
+        # for i, room in enumerate(rooms):
+        #     rooms[i].positions = 
+        while cfg.choose_room and cfg.run:
+            # events
+            choose_room.events([find_room_button, prev_page_button, next_page_button])
+
+            # draw functions
+            screen.blit(cfg.background, (0, 0))
+            show_game_mode()
+
+            pygame.draw.rect(screen, pygame.Color("white"), (10, 70, 480, 390), border_radius=5)
+            pygame.draw.rect(screen, pygame.Color("gray"), rooms_list_pos, 2, border_radius=5)
+
+
+            # find_room_button.draw_button(screen)
+            prev_page_button.draw_button(screen)
+            next_page_button.draw_button(screen)
+
+            clock.tick(fps)
+            pygame.display.flip()
+
+
+
+
+
+
 
         """First player"""
         player_1, player_2 = 0, 1

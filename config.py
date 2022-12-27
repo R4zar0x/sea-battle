@@ -31,10 +31,11 @@ start_menu = False
 menu = False
 game = False
 end = False
+choose_room = False
 
 winner = ""
 
-game_mods = ["creating_fields", "game", "f_pl_turn", "s_pl_turn", "end_page", "start_page"]
+game_mods = ["creating_fields", "game", "f_pl_turn", "s_pl_turn", "end_page", "start_page", "choose_room"]
 game_mode = ""
 
 symbols = ("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")
