@@ -8,6 +8,7 @@ from config import screen, fps, clock
 from input_box import Box
 from button import Button
 from local_grid import Grid
+from page import Page
 
 import config as cfg
 
@@ -101,35 +102,55 @@ def main():
         find_room_button.set_text_color(pygame.Color("white"))
         find_room_button.set_function(print, "ok")
 
+        
+
+        rooms_list_pos = (20, 80, 460, 320)
+        room_high = 20
+        # margin = 5
+        rooms_dict = \
+            [{'room_name': "game 1"}, 
+            {'room_name': "roцom 2"}, 
+            {'room_name': "roфыom 3"}, 
+            {'room_name': "rooцуm 4"}, 
+            {'room_name': "roыom 5"},
+            {'room_name': "gamфывe 1"}, 
+            {'room_name': "roйцуom 2"}, 
+            {'room_name': "roйцуom 3"}, 
+            {'room_name': "rooйыфm 4"}, 
+            {'room_name': "roфom 5"},
+            {'room_name': "gaыme 1"}, 
+            {'room_name': "roфвm 2"}, 
+            {'room_name': "rooяm 3"}, 
+            {'room_name': "roвom 4"}, 
+            {'room_name': "roясom 5"}]
+        # for i,room in enumerate(rooms):
+        #     rooms[i].positions = 
+        
+        main_page = Page(rooms_dict, rooms_list_pos)
+
         prev_page_button = Button(50, 410, 150, 40)
         prev_page_button.set_text("Previos page")
         prev_page_button.set_button_color(pygame.Color("black"))
         prev_page_button.set_text_color(pygame.Color("black"))
-        prev_page_button.set_function(print, "previos page")
+        prev_page_button.set_function(main_page.prev_page)
 
         next_page_button = Button(300, 410, 150, 40)
         next_page_button.set_text("Next page")
         next_page_button.set_button_color(pygame.Color("black"))
         next_page_button.set_text_color(pygame.Color("black"))
-        next_page_button.set_function(print, "next page")
+        next_page_button.set_function(main_page.next_page)
 
-        rooms_list_pos = (20, 80, 460, 320)
-        room_high = 20
-        margin = 5
-        rooms = [{room_name: "room 1"}, {room_name: "room 2"}, {room_name: "room 3"}, {room_name: "room 4"}, {room_name: "room 5"}]
-        # for i, room in enumerate(rooms):
-        #     rooms[i].positions = 
+        
         while cfg.choose_room and cfg.run:
             # events
-            choose_room.events([find_room_button, prev_page_button, next_page_button])
+            choose_room.events([find_room_button, prev_page_button, next_page_button], main_page)
 
             # draw functions
             screen.blit(cfg.background, (0, 0))
             show_game_mode()
 
-            pygame.draw.rect(screen, pygame.Color("white"), (10, 70, 480, 390), border_radius=5)
-            pygame.draw.rect(screen, pygame.Color("gray"), rooms_list_pos, 2, border_radius=5)
-
+            # pygame.draw.rect(screen, pygame.Color("white"), (10, 70, 480, 390), border_radius=5)
+            main_page.draw(screen)
 
             # find_room_button.draw_button(screen)
             prev_page_button.draw_button(screen)

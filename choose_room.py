@@ -2,7 +2,7 @@ import pygame
 
 import config as cfg
 
-def events(buttons):
+def events(buttons, page):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             if cfg.choose_room:
@@ -12,3 +12,4 @@ def events(buttons):
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 if button.is_mouse_on_button():
                     button.button_click()
+        page.handler(event)

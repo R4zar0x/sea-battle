@@ -58,6 +58,8 @@ background_damping = False
 animations_frames = 256
 animations_time = 6
 
+max_rooms_on_page = 10
+
 demo_ships = \
     [
         ['alive', 0, 1, 2, 3],
